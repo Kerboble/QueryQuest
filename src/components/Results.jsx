@@ -12,7 +12,7 @@ function Results() {
   useEffect(() => {
     if(searchTerm){
       if(location.pathname === '/videos'){
-        getResults(video, `?query=${searchTerm}&limit=10&related_keywords=true videos`)
+        getResults(`?query=${searchTerm}&limit=10&related_keywords=true videos`)
       } else {
         getResults(`?query=${searchTerm}&limit=10&related_keywords=true`)
       }
