@@ -11,10 +11,10 @@ function Results() {
 
   useEffect(() => {
     if(searchTerm){
-      if(location.pathname === '/videos'){
-        getResults(`?query=${searchTerm}&limit=10&related_keywords=true videos`)
+      if(location.pathname === '/images'){
+        getResults("images", `imagesearch?q=${searchTerm}&gl=us&lr=lang_en&num=10&start=0`)
       } else {
-        getResults(`?query=${searchTerm}&limit=10&related_keywords=true`)
+        getResults("search", `?query=${searchTerm}&limit=10&related_keywords=true`)
       }
     }
   },[searchTerm, location.pathname])
@@ -39,18 +39,20 @@ function Results() {
           ))}
       </div>
     )
-  case '/videos':
+  case '/images':
     return (
-      <div className='flex flex-wrap justify-center items-center'>
-          {results?.image_results?.map(({image, url: {href, title}, index}) => {
-              <a className='sm:p-3 p-5' href={href} key={index} target='_blank' rel='noreferrer'>
-                  <img src={image?.src} alt={title} loading='lazy'/>
-                  <p className='w-36 break-words text-sm mt-2'>
-                      {title}
-                  </p>
-              </a>
-          })}
-      </div>
+      <div className='flex flex-wrap justify-between space-y-6 sm:px-56'>
+      {results?.items?.map(({link, title, thumbnailImageUrl}, index) => (
+        <div key={index} className='md:w-2/5 w-full'>
+          <a href={link} target='_blank' rel='noreferrer'>
+            <img src={thumbnailImageUrl} alt={title} />
+            <p className='text-lg hover:underline dark:text-blue-300 text-blue-700'>
+              {title}
+            </p>
+          </a>
+        </div>
+      ))}
+    </div>
     );
   case '/news':
     return 'search';
