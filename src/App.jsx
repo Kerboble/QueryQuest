@@ -7,11 +7,13 @@ import Search from './components/Search';
 import Layout from './components/Layout';
 
 
+
 function App() {
   return (
       <BrowserRouter>
         <Routes>
           <Route path="/" element={<Layout />}>
+            <Route path="search" element={<Results />}/>
             <Route path="images" element={<Results />}/>
             <Route path="news" element={<Results />}/>
             <Route path="videos" element={<Results />}/>
