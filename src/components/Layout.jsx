@@ -12,7 +12,7 @@ const [darkTheme, setDarkTheme] = useState(true)
             <Navbar 
             darkTheme={darkTheme}
             setDarkTheme={setDarkTheme}
-            />
+            /> 
             <Outlet />
             <Footer />
         </div>
